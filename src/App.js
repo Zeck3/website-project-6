@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import LoadingScreen from "./Components/Fallback"
+import Fallback from "./Components/Fallback"
 
 const Yorushika = lazy(() => import("./Routes/Yorushika"))
 const ThoughtCrime = lazy(() => import("./Routes/ThoughtCrime"))
@@ -12,7 +12,7 @@ const ThatsWhyIGaveUpOnMusic = lazy(() => import("./Routes/ThatsWhyIGaveUpOnMusi
 export default function App() {
   return (
     <Router>
-      <Suspense fallback={<LoadingScreen/>}>
+      <Suspense fallback={<Fallback/>}>
         <Routes>
           <Route path="/" element={<Yorushika/>}></Route>
           <Route path="/thoughtCrime" element={<ThoughtCrime/>}></Route>
