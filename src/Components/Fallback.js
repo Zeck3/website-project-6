@@ -2,8 +2,8 @@ import React from "react";
  
 export default function Fallback() {
     return (
-        <div className="absolute flex w-screen h-screen z-50 bg-drop-shadow">
-            <span class="material-symbols-outlined animate-spin">
+        <div className="absolute flex justify-center items-center w-screen top-0 h-screen z-30 bg-drop-shadow">
+            <span class="material-symbols-rounded animate-spin text-9xl">
                 progress_activity
             </span>
         </div>
