@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {},
     backgroundImage: {
-      "drop-shadow" : "linear-gradient(0deg, rgba(8,4,1,0.2665441176470589) 62%, rgba(8,4,1,1) 100%);",
+      "drop-shadow" : "linear-gradient(0deg, rgba(8,4,1,0) 50%, rgba(8,4,1,1) 100%);",
     },
   },
   plugins: [
