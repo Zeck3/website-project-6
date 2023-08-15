@@ -38,7 +38,7 @@ export const Playlist = [ {
         Title: null,
         Thumbnail: process.env.PUBLIC_URL + "/Assets/About.png",
         MusicVideo: null,
-        Description: "I am not a thief but this work cannot determined if its plagiarized or not. It is merely made to enhance my skills on coding on Javascript and React JS, on web development. And thus, as a fan of ヨルシカ, I made this playlist website (sort of) with minimal functionalities, and only a few songs from YORUSHIKA used. I do not own the images, the videos, and their work.",
+        Description: "I am not a thief but this work cannot determined if its plagiarized or not. It is merely made to enhance my skills on coding on Javascript and React JS, on web development. And thus, as a fan of ヨルシカ, I made this playlist website (sort of) with minimal functionalities, and only a few songs from ヨルシカ used. I do not own the images, the videos, and their work.",
         Subtitles: null
     },
 ]
