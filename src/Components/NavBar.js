@@ -38,9 +38,9 @@ export default function NavBar() {
                     <Links Visible={dropdown}/>
                 </li>
                 <li className="relative flex items-center justify-center">
-                    <a className="relative flex text-xs text-center onhover drop-shadow-xl" href="/">
+                    <Link className="relative flex text-xs text-center onhover drop-shadow-xl" to="/about">
                         ABOUT
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </nav>

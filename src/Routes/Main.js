@@ -1,13 +1,26 @@
 import NavBar from "../Components/NavBar";
 import Description from "../Components/Description";
 import MusicVideo from "../Components/MusicVideo";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Main(props) {
+  const [isplaying, setIsplaying] = useState(false)
+
+  const Playing = () => {
+    if (isplaying) { return (<span class="material-symbols-rounded text-7xl drop-shadow-xl">pause_circle</span>) }
+    else { return (<span class="material-symbols-rounded text-7xl drop-shadow-xl">play_circle</span>) }
+  }
+
+  const handleClick = () => {
+    if (isplaying) { setIsplaying(false); document.getElementById(props.id).pause()} 
+    else { setIsplaying(true); document.getElementById(props.id).play() };
+  }
+
   const main = async () => {
     const dom = {
-        lyric: document.getElementById(props.Lyrics),
-        player: document.getElementById(props.id)
+      lyric: document.getElementById(props.Lyrics),
+      player: document.getElementById(props.id)
     };
 
     const res = await fetch(props.VttLyrics);
@@ -15,61 +28,63 @@ export default function Main(props) {
     const lyrics = parseVtt(vtt);
 
     dom.player.ontimeupdate = () => {
-        const time = dom.player.currentTime;
-        const index = syncLyric(lyrics, time);
+      const time = dom.player.currentTime;
+      const index = syncLyric(lyrics, time);
 
-        if (index == null) {
-            dom.lyric.innerHTML = "";
-            return;
-        }
+      if (index == null) {
+          dom.lyric.innerHTML = "";
+          return;
+      }
 
-        dom.lyric.innerHTML = lyrics[index].text;
+      dom.lyric.innerHTML = lyrics[index].text;
+
+      dom.player.onended = () => {
+        dom.player.load()
+        setIsplaying(false)
+      }
     };
   };
 
   const parseVtt = (vtt) => {
-      const regex = /^(?<start>\d{2}:\d{2}:\d{2}.\d{3}?) --> (?<end>\d{2}:\d{2}:\d{2}.\d{3}?)\r\n(?<text>.*)$/gm;
-      const matches = [...vtt.matchAll(regex)];
-      const output = [];
+    const regex = /^(?<start>\d{2}:\d{2}:\d{2}.\d{3}?) --> (?<end>\d{2}:\d{2}:\d{2}.\d{3}?)\r\n(?<text>.*)$/gm;
+    const matches = [...vtt.matchAll(regex)];
+    const output = [];
 
-      matches.forEach(match => {
-          const startTime = parseTime(match[1]);
-          const endTime = parseTime(match[2]);
-          const text = match[3].trim();
+    matches.forEach(match => {
+      const startTime = parseTime(match[1]);
+      const endTime = parseTime(match[2]);
+      const text = match[3].trim();
 
-          output.push({
-              startTime,
-              endTime,
-              text
-          });
+      output.push({
+        startTime,
+        endTime,
+        text
       });
+    });
 
-      function parseTime(time) {
-          const timeComponents = time.split(':').map(parseFloat);
-          const hoursToSeconds = timeComponents[0] * 3600;
-          const minutesToSeconds = timeComponents[1] * 60;
-          const seconds = timeComponents[2];
-          return hoursToSeconds + minutesToSeconds + seconds;
-      }
-
-      return output;
+    function parseTime(time) {
+      const timeComponents = time.split(':').map(parseFloat);
+      const hoursToSeconds = timeComponents[0] * 3600;
+      const minutesToSeconds = timeComponents[1] * 60;
+      const seconds = timeComponents[2];
+      return hoursToSeconds + minutesToSeconds + seconds;
+    }
+    return output;
   }
 
   const syncLyric = (lyrics, time) => {
-      const validLyrics = lyrics.filter(lyric => time >= lyric.startTime && time <= lyric.endTime);
+    const validLyrics = lyrics.filter(lyric => time >= lyric.startTime && time <= lyric.endTime);
 
-      if (validLyrics.length === 0) {
-          return null;
-      }
+    if (validLyrics.length === 0) {
+      return null;
+    }
 
-      const closestLyric = validLyrics.reduce((prevLyric, currentLyric) => {
-          const prevTimeDifference = Math.abs(prevLyric.startTime - time);
-          const currentTimeDifference = Math.abs(currentLyric.startTime - time);
-
-          return currentTimeDifference < prevTimeDifference ? currentLyric : prevLyric;
-      });
-
-      return lyrics.indexOf(closestLyric);
+    const closestLyric = validLyrics.reduce((prevLyric, currentLyric) => {
+        const prevTimeDifference = Math.abs(prevLyric.startTime - time);
+        const currentTimeDifference = Math.abs(currentLyric.startTime - time);
+        return currentTimeDifference < prevTimeDifference ? currentLyric : prevLyric;
+    });
+    return lyrics.indexOf(closestLyric);
   }
 
   useEffect(() => {
@@ -83,7 +98,7 @@ export default function Main(props) {
         <div className="flex w-full mx-20">
           <div className="flex flex-row w-full gap-20">
             <div className="flex items-center">
-              <a className="text-5xl" href="/">ヨルシカ</a>
+              <Link className="text-5xl" to="/">ヨルシカ</Link>
             </div>
             <NavBar/>
           </div>
@@ -91,7 +106,9 @@ export default function Main(props) {
       </header>
       <section className="relative flex w-screen h-auto py-10">
         <Description Lyrics={props.Lyrics} Title={props.Title} Description={props.Description}>
-          {props.children}
+          <button onClick={handleClick} style={{display: props.showbutton? "flex" : "none"}}>
+            <Playing isplaying={isplaying}/>
+          </button>
         </Description>
       </section>
     </main>
