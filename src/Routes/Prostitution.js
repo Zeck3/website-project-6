@@ -7,8 +7,8 @@ export default function Prostitution() {
     const [isplaying, setIsplaying] = useState(false)
 
     function Playing() {
-        if (isplaying) { return (<span class="material-symbols-rounded text-7xl">pause_circle</span>) }
-        else { return (<span class="material-symbols-rounded text-7xl">play_circle</span>) }
+        if (isplaying) { return (<span class="material-symbols-rounded text-7xl drop-shadow-xl">pause_circle</span>) }
+        else { return (<span class="material-symbols-rounded text-7xl drop-shadow-xl">play_circle</span>) }
     }
 
     function handleClick() {
@@ -17,7 +17,7 @@ export default function Prostitution() {
     }
 
     return(
-        <Main id="prostitution" Poster={SpecifiedVideo.Thumbnail} MusicVideo={SpecifiedVideo.MusicVideo} Title={SpecifiedVideo.Title} Description={SpecifiedVideo.Description}>
+        <Main VttLyrics={SpecifiedVideo.Subtitles} Lyrics="prostitutionLyrics" id="prostitution" Poster={SpecifiedVideo.Thumbnail} MusicVideo={SpecifiedVideo.MusicVideo} Title={SpecifiedVideo.Title} Description={SpecifiedVideo.Description}>
             <button onClick={handleClick}>
                 <Playing isplaying={isplaying}/>
             </button>

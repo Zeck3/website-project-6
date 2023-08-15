@@ -4,6 +4,6 @@ import { Playlist } from "../Components/Playlist";
 export default function Yorushika() {
     let SpecifiedVideo = Playlist[0]
     return(
-        <Main Poster={SpecifiedVideo.Thumbnail} Description={SpecifiedVideo.Description}/>
+        <Main VttLyrics={SpecifiedVideo.Subtitles} Lyrics="yorushikaLyrics" id="yorushika" Poster={SpecifiedVideo.Thumbnail} Description={SpecifiedVideo.Description}/>
     )
 }
