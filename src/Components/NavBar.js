@@ -29,7 +29,6 @@ export default function NavBar() {
         var myBox = document.getElementById('dropdown');
         var myButton = document.getElementById('button');
         if (event.target !== myButton && myBox) {
-            console.log('You clicked outside the box!');
             setDropdown(false)
         }
     }
