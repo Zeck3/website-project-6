@@ -3,7 +3,7 @@ export const Playlist = [ {
         Thumbnail: process.env.PUBLIC_URL + "/Assets/YorushikaThumbnail.png",
         MusicVideo: null,
         Description: "There are various thieves nowadays, but I am a little different from them. It's not about stealing money. I'm not really interested in antique jewelry or other valuable art. I'm a thief stealing sound.",
-        Subtitles: null
+        Subtitles: process.env.PUBLIC_URL + "/Assets/Subtitles/NoneTemplate.vtt"
     }, {
         Title: "思想犯",
         MusicVideo: process.env.PUBLIC_URL + "/Assets/ヨルシカ - 思想犯OFFICIAL VIDEO.webm",
@@ -27,7 +27,7 @@ export const Playlist = [ {
         MusicVideo: process.env.PUBLIC_URL + "/Assets/ヨルシカ - 斜陽.webm",
         Thumbnail: process.env.PUBLIC_URL + "/Assets/TheSettingSunThumbnail.png",
         Description: null,
-        Subtitles: null
+        Subtitles: process.env.PUBLIC_URL + "/Assets/Subtitles/NoneTemplate.vtt"
     }, {
         Title: "だから僕は音楽をやめた",
         MusicVideo: process.env.PUBLIC_URL + "/Assets/ヨルシカ - だから僕は音楽を辞めた (Music Video).webm",
@@ -39,6 +39,6 @@ export const Playlist = [ {
         Thumbnail: process.env.PUBLIC_URL + "/Assets/About.png",
         MusicVideo: null,
         Description: "I am not a thief but this work cannot determined if its plagiarized or not. It is merely made to enhance my skills on coding on Javascript and React JS, on web development. And thus, as a fan of ヨルシカ, I made this playlist website (sort of) with minimal functionalities, and only a few songs from ヨルシカ used. I do not own the images, the videos, and their work.",
-        Subtitles: null
+        Subtitles: process.env.PUBLIC_URL + "/Assets/Subtitles/NoneTemplate.vtt"
     },
 ]
