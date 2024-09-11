@@ -8,8 +8,8 @@ export default function Main(props) {
   const [isplaying, setIsplaying] = useState(false)
 
   const Playing = () => {
-    if (isplaying) { return (<span class="material-symbols-rounded text-7xl drop-shadow-xl">pause_circle</span>) }
-    else { return (<span class="material-symbols-rounded text-7xl drop-shadow-xl">play_circle</span>) }
+    if (isplaying) { return (<span className="material-symbols-rounded text-7xl drop-shadow-xl">pause_circle</span>) }
+    else { return (<span className="material-symbols-rounded text-7xl drop-shadow-xl">play_circle</span>) }
   }
 
   const handleClick = () => {
