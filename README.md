@@ -6,3 +6,4 @@ I am not a thief but this work cannot determined if its plagiarized or not. It i
 - Vtt lyrics file does not work on deployment
 - Optimization issues with loading resources
 - Icons display text
+- Not responsive enough
